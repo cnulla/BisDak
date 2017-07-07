@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
     
 });
+Route::post('/', 'InputController@returnWord');
+
 Route::get('developer', function () {
     return view('developer');
    

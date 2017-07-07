@@ -38,15 +38,17 @@
                 <hr class="md">
                 <div class="container">
                     <div class="tag-box">
-                        <form>
+                        <form action = '' method ='POST'>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="input_word" name="wordInput" placeholder="Input a word...
                                 ">
+
                             </div>
                             <div class="form-group"> 
-                                <button type="submit" class="btn btn-hd">ANALYZE</button>
-                            </div>                      
-                        </form> 
+                                <input type="submit" class="btn btn-hd">ANALYZE</input>
+                            </div>  
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">                    
+                        </form>
                     </div>
                 </div>
                 <hr class="md">
@@ -55,14 +57,15 @@
                     <hr class="nd">
                     
                     <div class="baseform">
+                        
                         <h4><strong>BASE FORM</strong></h4>
-                        <h5><center>Root Word</center></h5>
+                        <h5><center><strong>Root Word</center></strong></h5>
                         <hr class="nd">
 
                         <h4><strong>AFFIXES</strong></h4>
-                        <h6>Prefix | </h6>
-                        <h6>Infix | </h6>
-                        <h6>Suffix | </h6>
+                        <h6><strong>Prefix |<strong> </h6>
+                        <h6><strong>Infix | <strong></h6>
+                        <h6><strong>Suffix | <strong></h6>
 
                     </div>
                     <div class="sentence">
@@ -70,6 +73,11 @@
                         <hr class="nd">
                         <h5><strong>Part of Speech</strong></h5>
                         <h6>Example Sentence</h6>
+                    </div>
+                    <div class="sentence">
+                        <h4><strong>GRAMMATICAL PROPERTIES</strong></h4>
+                        <hr class="nd">
+                        <h6>Grammatical Property of Verb or Noun</h6>
                     </div>
                 
                 </div>
