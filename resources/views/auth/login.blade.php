@@ -19,8 +19,7 @@
             </h1>
             <div class="account-wall">
                 <!--Logo-->
-                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                    alt="">
+                    <img class="profile-img" src="{{ URL::to('/images/test.png') }}" alt="">
 
                 <!--Form-->
                 <form class="form-signin" role="form" method="POST" action="{{ route('login') }}">

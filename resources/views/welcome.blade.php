@@ -63,9 +63,9 @@
                         <hr class="nd">
 
                         <h4><strong>AFFIXES</strong></h4>
-                        <h6><strong>Prefix |<strong> </h6>
-                        <h6><strong>Infix | <strong></h6>
-                        <h6><strong>Suffix | <strong></h6>
+                        <h6>Prefix | </h6>
+                        <h6>Infix |</h6>
+                        <h6>Suffix |</h6>
 
                     </div>
                     <div class="sentence">
