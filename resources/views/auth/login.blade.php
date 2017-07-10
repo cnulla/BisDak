@@ -8,14 +8,15 @@
 
 <!-- Fonts -->
 <link href="./fonts/raleway.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,600|Bebas+Neue" rel="stylesheet" type="text/css">
+
+
 
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">
-                <strong>
+            <h1 class="text-center b">
                 LOGIN AS A DEVELOPER
-                </strong>
             </h1>
             <div class="account-wall">
                 <!--Logo-->
@@ -45,11 +46,11 @@
 
                     <!--Remember Me-->
                     <div class="form-group">
-                            <div class="checkbox">
-                                <label class="checkbox pull-left">
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> <strong>Remember Me</strong>
-                                </label>
-                            </div>
+                        <div class="checkbox">
+                            <label class="checkbox pull-left">
+                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                            </label>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -67,8 +68,8 @@
             </div>
 
             <!--Create Account-->
-            <a href="{{ url('/register') }}" class="text-center new-account"><strong>Create an account</strong></a>
-        </div>
+            <a href="{{ url('/register') }}" class="text-center new-account">Create an account</a>
+        </div> 
     </div>
 </div>
 <!--

@@ -12,21 +12,44 @@
        <link href="./css/welcome.css" rel="stylesheet">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600|Bebas+Neue" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Rancho&effect=anaglyph" rel="stylesheet" type="text/css">
 
     </head>
     <body>
+        <div class="top-right links"> 
 
-        <div class="flex-center position-ref full-height">
-            <div class="top-right links"> 
-            @if (Route::has('login'))
-                @if (Auth::check())
-                    <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ url('/developer') }}">Developers</a>
-                @endif
+            @if (Auth::guest())
+                <a href="{{ url('/developer') }}">Developers</a>
+            @else
+                <a href="{{ url('/developer') }}">Home</a>
+                <a href="{{ url('/home') }}">Dashboard</a>
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
             @endif
             </div>
+        <div class="flex-center position-ref full-height">
+            
 
             <div class="content">
                 <div class="title header">
@@ -45,42 +68,14 @@
 
                             </div>
                             <div class="form-group"> 
-                                <input type="submit" class="btn btn-hd">ANALYZE</input>
+                                <input type="submit" class="btn btn-hd" value="ANALYZE">
                             </div>  
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">                    
                         </form>
                     </div>
                 </div>
                 <hr class="md">
-                <div class="container info ">
-                    <h1 class="subtitle"><strong>Output</strong></h1>
-                    <hr class="nd">
-                    
-                    <div class="baseform">
-                        
-                        <h4><strong>BASE FORM</strong></h4>
-                        <h5><center><strong>Root Word</center></strong></h5>
-                        <hr class="nd">
-
-                        <h4><strong>AFFIXES</strong></h4>
-                        <h6>Prefix | </h6>
-                        <h6>Infix |</h6>
-                        <h6>Suffix |</h6>
-
-                    </div>
-                    <div class="sentence">
-                        <h4><strong>AMBIGUITY</strong></h4>
-                        <hr class="nd">
-                        <h5><strong>Part of Speech</strong></h5>
-                        <h6>Example Sentence</h6>
-                    </div>
-                    <div class="sentence">
-                        <h4><strong>GRAMMATICAL PROPERTIES</strong></h4>
-                        <hr class="nd">
-                        <h6>Grammatical Property of Verb or Noun</h6>
-                    </div>
-                
-                </div>
+                @yield('content')
             </div>
         </div>
 

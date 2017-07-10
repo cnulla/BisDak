@@ -7,14 +7,13 @@
 <link href="{{ asset('css/developer.css') }}" rel="stylesheet">
 <link href="./css/register.css" rel="stylesheet">
 <!-- Fonts -->
-<link href="./fonts/raleway.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,600|Bebas+Neue" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Rancho&effect=anaglyph" rel="stylesheet" type="text/css">
 
 <div class="container flex-center position-ref ">
     <div class="row">
-            <h1 class="text-center login-title">
-                <strong>
+            <h1 class="text-center b">
                 REGISTER AS A DEVELOPER
-                </strong>
             </h1>
             <div class="account-wall">
                 <!--Logo-->
@@ -79,9 +78,7 @@
                     <div class="form-group">
                         <!--Button-->
                         <div class="col-md-3 col-md-offset-7">
-                            <button type="submit" class="btn btn-lg btn-primary btn-block btn-hd">
-                                REGISTER
-                            </button>
+                            <input type="submit" class="btn btn-lg btn-primary btn-block btn-hd b" value="REGISTER">
                             <span class="clearfix"></span>
                         </div>
                     </div>
@@ -89,7 +86,7 @@
             </div>
 
             <!--Create Account-->
-            <a href="{{ url('/login') }}" class="text-center new-account"><strong>Already have an account?</strong></a>
+            <a href="{{ url('/login') }}" class="text-center new-account">Already have an account?</a>
         
     </div>
 </div>

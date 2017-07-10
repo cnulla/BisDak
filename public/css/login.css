@@ -19,7 +19,6 @@ html, body {
 }
 .form-signin .checkbox
 {
-    font-weight: 200;
     color: black;
 }
 .form-signin .form-control
@@ -81,10 +80,14 @@ html, body {
     margin-top: 10px;
 }
 .btn-hd{
+    margin-top: 10px;
     background-color: #405d27;
 }
 .btn-hd:hover{
     background-color: #3e4444;
     color: white;
 
+}
+.b{
+    font-family: 'Bebas Neue', serif;
 }

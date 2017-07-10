@@ -9,7 +9,7 @@ class InputController extends Controller
     //
     function returnWord(Request $request){
     	//$request = $request->input("wordInput");
-    	//return view('welcome',compact('request'))
-    	return $request->input("wordInput");
+    	return view('word');
+    	//return $request->input("wordInput");
     }
 }
