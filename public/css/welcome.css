@@ -33,6 +33,7 @@ html, body {
     text-align: center;
     margin-top: 50px;
     background-color: white;
+    height: auto;
 }
 
 .title {
@@ -118,6 +119,7 @@ html, body {
     float: left;
     position: relative;
     padding: 0px 10px;
+    padding-bottom: 20px;
     top: 0px;
     color: #3e4444;
     font-size: 12px;
