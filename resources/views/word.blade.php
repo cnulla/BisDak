@@ -14,10 +14,35 @@
         <hr class="nd">
 
         <h3 class="b">AFFIXES</h3>
-        <h4>Prefix | </h4>
-        <h4>Infix |</h4>
-        <h4>Suffix |</h4>
+        <h4>Prefix |
+            @if (empty($prefix))
+                NONE
+            @else
+                @foreach ($prefix as $key)
+                    {{$key}}, 
+                @endforeach
+            @endif
+        </h4>
+        <h4>Infix |
+            @if (empty($infix))
+                NONE
+            @else
+                @foreach ($infix as $key)
+                    {{$key}},
+                @endforeach
+            @endif
 
+           
+        </h4>
+        <h4>Suffix |
+           @if (empty($suffix))
+                NONE
+            @else
+                @foreach ($suffix as $key)
+                    {{$key}},
+                @endforeach
+            @endif
+        </h4>
     </div>
     <div class="sentence">
         <h3 class="b">AMBIGUITY</h3>

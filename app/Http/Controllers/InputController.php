@@ -9,14 +9,19 @@ use App\Quotation;
 
 class InputController extends Controller
 {
+	
     //
     function returnWord(Request $request){
     	$temp = $request->input("wordInput");
-    	$rootWord = $this->returnRootWord($temp);
+    	$data= $this->returnRootWord($temp);
+
 
     	$theWord = [
     		'word' => $temp,
-    		'rootWord' => $rootWord
+    		'rootWord' => $data['rootWord'],
+    		'prefix' => $data['prefixes'],
+    		'suffix' => $data['suffixes'],
+    		'infix' => $data['infixes']
     	];
 
     	return view('word',$theWord);
@@ -26,57 +31,74 @@ class InputController extends Controller
     function returnRootWord(String $word){
 		
 		$rootWord = $word;	
+		$tempRootWord = array(); //contains list of all possible words
 
 		//Remove suffixes
+		$inSuffix = array();
     	$suffixes=DB::table('Suffixes')->select('suffix')->get();
-		$inSuffix= [];
     	foreach ($suffixes as $suffix) {
-    		$suffix = substr($suffix->suffix, 1);
+    		$suffix= str_replace("-", "", $suffix->suffix);
+
     		if (ends_with($word,$suffix)) {
-    			$inSuffix = $suffix;
+    			$inSuffix[] = $suffix; //inSuffix holds all possible suffixes
     		}
     	}
-    	//echo $inSuffix;
-    		//trim Word
-    		
-
-			$count = strlen($inSuffix);
-			$rootWord = substr($word, 0, -1*$count);
-    		
-	   		
-    		
-	    	
-
+    		//append to tempRootWord all possible words without suffixes
+    		foreach ($inSuffix as $suffix) {
+    			$count = strlen($suffix);
+				$tempRootWord[] = substr($rootWord, 0, -1*$count);
+    		}
 
    		//Remove prefixes
+		$inPrefix = array();
     	$prefixes=DB::table('Prefixes')->select('prefix')->get();
-		$inPrefix= [];
     	foreach ($prefixes as $prefix) {
-    		$prefix =  substr($prefix->prefix, 0, -1);
-    		if (starts_with($word,$prefix)) {
-    			$inPrefix = $prefix;
-    			
+    		$prefix = str_replace("-", "", $prefix->prefix);
+    		if (starts_with($rootWord,$prefix)) {
+    			$inPrefix[] = $prefix;
+    		}
+    	}
+    		//append to tempRootWord all possible words without prefixes
+    		foreach ($inPrefix as $prefix) {
+    			$count = strlen($prefix);
+				$tempRootWord[] = substr($rootWord, $count);
+    		}
+    		//append to tempRootWord all possible words without prefixes and suffixes
+    		foreach ($tempRootWord as $temp) {
+    			foreach ($inSuffix as $suffix) {
+    				$count = strlen($suffix);
+					$tempRootWord[] = substr($temp, 0, -1*$count);
+    			}
+    		}
+    		
+    	//Remove infixes
+    	$inInfix = array();
+    	$infixes=DB::table('Infixes')->select('infix')->get();
+    	foreach ($infixes as $infix) {
+    		$infix = str_replace("-", "", $infix->infix);
+    		foreach ($tempRootWord as $temp) { ////append to tempRootWord all possible words w/o infix
+    			if (str_contains($temp,$infix)) {
+	    			$inInfix[] = $infix;
+	    			$tempRootWord[] = str_replace($infix, "", $temp);
+	    		}
     		}
     	}
     		
-	    	
+    	//insert here searching through database every element in tempRootWord array
 
-    	/*//Remove infixes
-    	$infixes=DB::table('Infixes')->select('infix')->get();
-		$inInfix= [];
-    	foreach ($infixes as $infix) {
-    		$infix =  substr($infix->infix, 1);
-    		$infix =  substr($infix->infix, 0, -1);
-    		if (str_contains($word,$infix)) {
-    			$inInfix = $infix;
-    		}
-    	}*/
+    	$rootWord  = 'temp sa';
+    	foreach ($tempRootWord as $key) {
+    		echo $key; echo ' ';
+    	}
 
-    	//echo $inPrefix + '\n';
-    	//echo $inSuffix + '\n';
-    	//echo $inInfix + '\n';
+		$data = [
+    		'rootWord' => $rootWord,
+    		'infixes' => $inInfix,
+    		'prefixes' => $inPrefix,
+    		'suffixes' => $inSuffix,
+    	];
 
-    	return $rootWord;
+    	return $data;
     }
 
     
